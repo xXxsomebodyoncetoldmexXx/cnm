@@ -21,8 +21,8 @@ const Projects = () => {
       reader.readAsDataURL(file)
       reader.onload = () => {
         // Save audio remotely
-        // axios.post(apiUrl, { audio_name: file.name, audio_data: reader.result })
-        //
+        axios.post(apiUrl, { audio_name: file.name, audio_data: reader.result })
+
         // Send for server to process
         axios
           .post('/api/upload', {
