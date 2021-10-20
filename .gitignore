@@ -1,0 +1,8 @@
+*/
+
+!backend/
+!cleanfolio/
+
+backend/__pycache__/
+
+
