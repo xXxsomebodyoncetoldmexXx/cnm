@@ -2,7 +2,11 @@
 
 !backend/
 !cleanfolio/
-
-backend/__pycache__/
+!cleanfolio/*
+!cleanfolio/*/*
+!cleanfolio/*/*/*
+!cleanfolio/*/*/*/*
+!cleanfolio/*/*/*/*/*
+!cleanfolio/*/*/*/*/*/*
 
 
