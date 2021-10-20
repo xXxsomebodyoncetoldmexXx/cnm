@@ -7,7 +7,7 @@ import base64
 import io
 
 
-app = Flask(__name__, static_folder="..\\cleanfolio\\build",
+app = Flask(__name__, static_folder="..\\frontend\\build",
             static_url_path="/")
 # db = DB()
 
