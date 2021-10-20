@@ -1,12 +1,12 @@
 */
 
 !backend/
-!cleanfolio/
-!cleanfolio/*
-!cleanfolio/*/*
-!cleanfolio/*/*/*
-!cleanfolio/*/*/*/*
-!cleanfolio/*/*/*/*/*
-!cleanfolio/*/*/*/*/*/*
+!frontend/
+!frontend/*
+!frontend/*/*
+!frontend/*/*/*
+!frontend/*/*/*/*
+!frontend/*/*/*/*/*
+!frontend/*/*/*/*/*/*
 
 
