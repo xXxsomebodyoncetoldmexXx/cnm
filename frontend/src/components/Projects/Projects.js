@@ -1,8 +1,8 @@
 // import uniqid from 'uniqid'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDownload, faPlay } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
+import { faDownload, faPause, faPlay } from '@fortawesome/free-solid-svg-icons'
+import { useEffect, useState } from 'react'
 import { projects } from '../../portfolio'
 // import ProjectContainer from '../ProjectContainer/ProjectContainer'
 import './Projects.css'
@@ -21,7 +21,7 @@ const Projects = () => {
       reader.readAsDataURL(file)
       reader.onload = () => {
         // Save audio remotely
-        axios.post(apiUrl, { audio_name: file.name, audio_data: reader.result })
+        // axios.post(apiUrl, { audio_name: file.name, audio_data: reader.result })
 
         // Send for server to process
         axios
@@ -49,15 +49,25 @@ const Projects = () => {
     downloadPlaceholder.click()
   }
 
-  let audio
+  const [currentAudio, setCurrentAudio] = useState(null)
+  const [currentId, setCurrentId] = useState(null)
+
+  useEffect(() => {
+    if (currentAudio) currentAudio.play()
+  })
 
   const listenHandle = (id) => {
-    if (audio) {
-      audio.pause()
+    if (currentAudio) {
+      currentAudio.pause()
     }
-    audio = new Audio(speaker[id].data)
-    audio.currentTime = 0
-    audio.play()
+    setCurrentAudio(new Audio(speaker[id].data))
+    setCurrentId(id)
+  }
+
+  const pauseHandle = () => {
+    currentAudio.pause()
+    setCurrentAudio(null)
+    setCurrentId(null)
   }
 
   return (
@@ -90,8 +100,12 @@ const Projects = () => {
                     Speaker {value.id + 1}:
                     <FontAwesomeIcon
                       className='spacing'
-                      icon={faPlay}
-                      onClick={() => listenHandle(value.id)}
+                      icon={currentId === value.id ? faPause : faPlay}
+                      onClick={() =>
+                        currentId === value.id
+                          ? pauseHandle()
+                          : listenHandle(value.id)
+                      }
                     />
                     <FontAwesomeIcon
                       className='spacing'
@@ -107,7 +121,12 @@ const Projects = () => {
                 style={
                   speaker.length ? { display: 'block' } : { display: 'none' }
                 }
-                onClick={() => setSpeaker([])}
+                onClick={() => {
+                  if (currentAudio) {
+                    currentAudio.pause()
+                  }
+                  setSpeaker([])
+                }}
               >
                 Clear
               </button>
