@@ -3,10 +3,10 @@
 !backend/
 !frontend/.gitignore
 !frontend/*
-!frontend/*/*
-!frontend/*/*/*
-!frontend/*/*/*/*
-!frontend/*/*/*/*/*
-!frontend/*/*/*/*/*/*
+!frontend/build/*
+!frontend/build/*/*
+!frontend/build/*/*/*
+!frontend/build/*/*/*/*
+!frontend/build/*/*/*/*/*
 
 
